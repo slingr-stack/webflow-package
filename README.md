@@ -14,20 +14,13 @@
     </tr>
     </tbody>
 </table>
----
-title: Webflow endpoint
-keywords:
-last_updated: June 6, 2023
-tags: []
-summary: "Detailed description of the CMS API of the Webflow endpoint."
----
 
 ## Overview
 
-This endpoint allows direct access to the [Webflow CMS API](https://developers.webflow.com/),
+This package allows direct access to the [Webflow CMS API](https://developers.webflow.com/),
 however it provides shortcuts and helpers for most common use cases.
 
-Some features available in this endpoint are:
+Some features available in this package are:
 
 - Authentication and authorization
 - Direct access to the CMS API
@@ -35,12 +28,12 @@ Some features available in this endpoint are:
 
 ## Configuration
 
-In order to create a Webflow endpoint in your Slingr app first you must have a Webflow account. 
+In order to create a Webflow package in your Slingr app first you must have a Webflow account. 
 Go to the dashboard configuration: "integrations" and create an application filling the fields with the correct information 
-(the redirect URI will be shown in the endpoint configuration create view and the homepage is the runtime of your app). 
+(the redirect URI will be shown in the package configuration create view and the homepage is the runtime of your app). 
 Once you created the application you will be able to see the Client Id and Client Secret on the application details section.
-You should fill the endpoint fields with this. Then, you will need to go through an Oauth Authorization process with the button "Connect to Webflow", 
-this will give the app an authorization code which is necessary to finally get the access token when the endpoint is deployed. 
+You should fill the package fields with this. Then, you will need to go through an Oauth Authorization process with the button "Connect to Webflow", 
+this will give the app an authorization code which is necessary to finally get the access token when the package is deployed. 
 
 ### Redirect URI
 
@@ -374,7 +367,7 @@ Generic flow step for full use of the entire package and its services.
         <td> - </td>
         <td>Always</td>
         <td>
-            This is the http method to be used against the endpoint. <br>
+            This is the http method to be used against the package. <br>
             Possible values are: <br>
             <i><strong>GET,POST,PUT,PATCH,DELETE</strong></i>
         </td>
@@ -386,7 +379,7 @@ Generic flow step for full use of the entire package and its services.
         <td> - </td>
         <td>Always</td>
         <td>
-            The url to which this endpoint will send the request. This is the exact service to which the http request will be made. <br>
+            The url to which this package will send the request. This is the exact service to which the http request will be made. <br>
             Possible values are: <br>
             <i><strong>/sites<br>/sites/{site_id}<br>/sites/{site_id}/domains<br>/sites/{site_id}/collections<br>/collections/{collection_id}<br>/collections/{collection_id}/items<br>/collections/{collection_id}/items/{item_id}<br>/sites/{site_id}/users<br>/sites/{site_id}/users/{user_id}<br>/sites/{site_id}/products<br>/sites/{site_id}/orders<br>/sites/{site_id}/order/{order_id}<br>/sites/{site_id}/collections/{collection_id}/items/{item_id}/inventory<br>/sites/{site_id}/webhooks<br>/sites/{site_id}/webhooks/{webhook_id}<br>/sites/{site_id}/publish<br>/collections/{collection_id}/items<br>/sites/{site_id}/users/invite<br>/sites/{site_id}/products<br>/sites/{site_id}/products/{product_id}/skus<br>/sites/{site_id}/order/{order_id}/fulfill<br>/sites/{site_id}/order/{order_id}/unfulfill<br>/sites/{site_id}/order/{order_id}/refund<br>/sites/{site_id}/webhooks<br>/collections/{collection_id}/items/{item_id}<br>/collections/{collection_id}/items/{item_id}<br>/sites/{site_id}/users/{user_id}<br>/sites/{site_id}/products<br>/sites/{site_id}/products/{product_id}/skus<br>/sites/{site_id}/order/{order_id}<br>/sites/{site_id}/collections/{collection_id}/items/{item_id}/inventory<br>/collections/{collection_id}/items/{item_id}<br>/sites/{site_id}/users/{user_id}<br>/sites/{site_id}/webhooks/{webhook_id}<br></strong></i>
         </td>
@@ -495,7 +488,7 @@ Generic flow step for full use of the entire package and its services.
         <td>response</td>
         <td>object</td>
         <td>
-            Object resulting from the response to the endpoint call.
+            Object resulting from the response to the package call.
         </td>
     </tr>
     </tbody>
@@ -535,7 +528,7 @@ Lists all sites in the account.
         <td>response</td>
         <td>object</td>
         <td>
-            Object resulting from the response to the endpoint call.
+            Object resulting from the response to the package call.
         </td>
     </tr>
     </tbody>
@@ -561,7 +554,7 @@ Lists all collections in one site of the account.
         <td>response</td>
         <td>object</td>
         <td>
-            Object resulting from the response to the endpoint call.
+            Object resulting from the response to the package call.
         </td>
     </tr>
     </tbody>
@@ -620,7 +613,7 @@ Creates an item in a collection of a site.
         <td>response</td>
         <td>object</td>
         <td>
-            Object resulting from the response to the endpoint call.
+            Object resulting from the response to the package call.
         </td>
     </tr>
     </tbody>
@@ -636,7 +629,6 @@ Creates an item in a collection of a site.
 
 ## Dependencies
 * HTTP Service (Latest Version)
-* Oauth Package (v1.0.10) // TODO: Review the dependencies of the package
 
 ## About SLINGR
 

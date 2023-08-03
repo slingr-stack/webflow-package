@@ -20,8 +20,7 @@ function handleRequestWithRetry(requestFn, options, callbackData, callbacks) {
         return requestFn(options, callbackData, callbacks);
     } catch (error) {
         sys.logs.info("[webflow] Handling request "+JSON.stringify(error));
-        dependencies.oauth.functions.refreshToken('webflow:refreshToken'); // TODO : If dont use oauth (ex endpoint per user) delete this and the next line, otherwise delete this comment
-        return requestFn(setAuthorization(options), callbackData, callbacks);
+        throw error;
     }
 }
 
@@ -33,17 +32,6 @@ function createWrapperFunction(requestFn) {
 
 for (var key in httpDependency) {
     if (typeof httpDependency[key] === 'function') httpService[key] = createWrapperFunction(httpDependency[key]);
-}
-
-
-exports.getAccessToken = function () { // TODO : If dont use oauth (ex endpoint per user) delete this function, otherwise delete this comment
-    sys.logs.info("[webflow] Getting access token from oauth");
-    return dependencies.oauth.functions.connectUser('webflow:userConnected');
-}
-
-exports.removeAccessToken = function () { // TODO : If dont use oauth (ex endpoint per user) delete this function, otherwise delete this comment
-    sys.logs.info("[webflow] Removing access token from oauth");
-    return dependencies.oauth.functions.disconnectUser('webflow:disconnectUser');
 }
 
 /****************************************************
@@ -572,18 +560,6 @@ exports.utils.getConfiguration = function (property) {
     return config.get(property);
 };
 
-exports.utils.verifySignature = function (body, signature) { // TODO: Remove the whole function if the signature is not necessary
-    sys.logs.info("Checking signature");
-    var secret = config.get("webhookSecret");
-    if (!secret || secret === "" ||
-        !sys.utils.crypto.verifySignatureWithHmac(body, signature, secret, "HmacSHA256")) { // TODO: Change the algorithm if necessary (Remove these comments after set the algorithm)
-        // !sys.utils.crypto.verifySignatureWithHmac(body, signature.replace("sha1=",""), secret, "HmacSHA1")) {
-        sys.logs.error("Invalid signature or body");
-        return false;
-    }
-    return true;
-};
-
 /****************************************************
  Private helpers
  ****************************************************/
@@ -671,30 +647,10 @@ function setApiUri(options) {
 
 function setRequestHeaders(options) {
     var headers = options.headers || {};
-    if (config.get("authenticationMethod") === "apiKey") { // TODO: Set the authentication method, if needed or remove this if (Remove comments after set the url)
-        sys.logs.debug('[webflow] Set header apikey');
-        headers = mergeJSON(headers, {"Authorization": "API-Key " + config.get("apiKey")});
-    } 
+    sys.logs.debug('[webflow] Set header Bearer: '+ config.get("accessToken"));
     headers = mergeJSON(headers, {"Content-Type": "application/json"});
-
+    headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("accessToken")});
     options.headers = headers;
-    return options;
-}
-
-function setAuthorization(options) { // TODO: Set the authorization method and verify prefix, if needed or remove this function (Remove this comment after set the url, dont remove the dynamic config script commented)
-    /**********************************************************************************************
-         Dynamic configuration
-         config.oauth.id = 'installationInfo-webflow-User-'+sys.context.getCurrentUserRecord().id();
-         return config;
-     ***********************************************************************************************/
-    sys.logs.debug('[webflow] Setting header token oauth');
-    var authorization = options.authorization || {};
-    authorization = mergeJSON(authorization, {
-        type: "oauth2",
-        accessToken: sys.storage.get(config.get("oauth").id + ' - access_token'),
-        headerPrefix: "token"
-    });
-    options.authorization = authorization;
     return options;
 }
 

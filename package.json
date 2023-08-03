@@ -30,30 +30,20 @@
             "required": true
         },
         {
-            "name": "connectButton",
-            "label": "Connect to Webflow",
-            "description": "Click button to obtain access token",
-            "type": "button",
+            "name": "requestToken",
+            "label": "Request token",
+            "type": "oauth2",
+            "visibility": "config.authenticationMethod == 'oAuth2'",
             "typeOptions": {
-                "color": "primary",
-                "icon": "zmdi-play",
-                "action": "var url = 'https://webflow.com/oauth/authorize?client_id=' + config.clientId + '&response_type=code';\nvar win = window.open(url, 'Authorization page', 'toolbar=no,scrollbars=no,location=no,statusbar=no,menubar=no,resizable=0,width=500,height=600,left=' + ((screen.width / 2) - 250) + ',top=' + ((screen.height / 2) - 250) + ',');\nvar self = this;\nvar intervalFn = function () {\n    try {\n        if (!win || !win.location) {\n            window.clearInterval(pollTimer);\n        } else {\n            if (win.location.href.indexOf('/callback') != -1) {\n                win.innerWidth = 100;\n                win.innerHeight = 100;\n                win.screenX = screen.width;\n                win.screenY = screen.height;\n                window.clearInterval(pollTimer);\n                url = win.location.href;\n                var pos = url.indexOf('code=');\n                var code;\n                if(pos > -1) {\n                    code = url.substring(pos + 5);\n                    config.authorizationCode = code;\n                    try { \n                        win.close();\n                    } catch (e) { }\n                }\n            }\n        }\n    } catch (e) {\n        console.log(e);\n    }\n};\nvar pollTimer = window.setInterval(function () { intervalFn.apply(self); }, 500);"
+                "clientId": "config.clientId",
+                "clientSecret": "config.clientSecret",
+                "authUrl": "'https://webflow.com/oauth/authorize'",
+                "accessTokenUrl": "'https://api.webflow.com/oauth/access_token'",
+                "scope": "",
+                "grantType": "'authorization_code'",
+                "accessToken": "@config.accessToken",
+                "refreshToken": "@config.refreshToken"
             }
-        },
-        {
-            "name": "authorizationCode",
-            "label": "Authorization Code",
-            "type": "text",
-            "required": true
-        },
-        {
-            "label": "Information",
-            "name": "information",
-            "type": "info",
-            "typeOptions": {
-                "alertType": "warning"
-            },
-            "value": "Once you create the endpoint or refresh the code, please make sure tu PUSH in the next 30 minutes and REDEPLOY the endpoint. "
         },
         {
             "name": "webhook",
@@ -65,7 +55,7 @@
             "name": "WEBFLOW_API_BASE_URL",
             "label": "Webflow Api Url",
             "type": "label",
-            "value": "https://api.example.com/v1/ // TODO: Set the base url for the api"
+            "value": "https://api.webflow.com/"
         }
     ],
     "events": [
