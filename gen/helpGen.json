@@ -1,0 +1,278 @@
+ {
+    "fileName": "functions",
+    "endpointName": "webflow", 
+    "apiDescriptors": [
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-sites"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-site"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/publish",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/publish-site"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/domains",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/domains"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/collections",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-collections"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/collections/:collection_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-collection"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/collections/:collection_id/items",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-items"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/collections/:collection_id/items",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/create-item"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PUT",
+            "url": "/collections/:collection_id/items/:item_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-item"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/collections/:collection_id/items/:item_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/patch-item"]
+        },
+        {
+            "prefix": "collection", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/collections/:collection_id/items/:item_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-item"]
+        },
+        {
+            "prefix": "collection", 
+            "suffix": "",
+            "method": "DELETE",
+            "url": "/collections/:collection_id/items/:item_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/remove-item"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/users",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-users"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/users/:user_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-user"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/sites/:site_id/users/:user_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-user"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "DELETE",
+            "url": "/sites/:site_id/users/:user_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/delete-user"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/users/invite",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/invite-user"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/products",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-products"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/products",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/create-product"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/sites/:site_id/products",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-product"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/products/:product_id/skus",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/create-sku"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/sites/:site_id/products/:product_id/skus",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-sku"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/orders",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-orders"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/order/:order_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-order"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/sites/:site_id/order/:order_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-order"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/order/:order_id/fulfill",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/fullfit-order"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/order/:order_id/unfulfill",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/unfullfit-order"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/order/:order_id/refund",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/refund-order"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/collections/:collection_id/items/:item_id/inventory",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-inventory"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "PATCH",
+            "url": "/sites/:site_id/collections/:collection_id/items/:item_id/inventory",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/update-inventory"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/webhooks",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/list-webhooks"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "POST",
+            "url": "/sites/:site_id/webhooks",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/create-webhook"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "GET",
+            "url": "/sites/:site_id/webhooks/:webhook_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/get-webhook"]
+        },
+        {
+            "prefix": "", 
+            "suffix": "",
+            "method": "DELETE",
+            "url": "/sites/:site_id/webhooks/:webhook_id",
+            "acceptsCallbacks": false,
+            "docsLinks": ["https://developers.webflow.com/reference/remove-webhook"]
+        }
+    ]
+}

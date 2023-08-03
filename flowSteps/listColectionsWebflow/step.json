@@ -1,0 +1,15 @@
+{
+  "label": "List all collections from webflow",
+  "name": "listColectionsWebflow",
+  "category": "integrations",
+  "description": "This flow step will send a request to list the collections with webflow",
+  "inputs": [],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}

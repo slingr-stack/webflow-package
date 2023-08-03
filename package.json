@@ -1,0 +1,110 @@
+{
+    "name": "webflow",
+    "label": "Webflow Package",
+    "dependencies": [
+        {
+            "type": "service",
+            "name": "http",
+            "version": "v1.2.6",
+            "instanceId": "shared"
+        }
+    ],
+    "configuration": [
+        {
+            "name": "redirectUri",
+            "label": "Redirect URI",
+            "description": "Redirect URI to register on your application",
+            "type": "label",
+            "value": "config.SERVER_URL+ '/callback'"
+        },
+        {
+            "name": "clientId",
+            "label": "Client ID",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "clientSecret",
+            "label": "Client Secret",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "connectButton",
+            "label": "Connect to Webflow",
+            "description": "Click button to obtain access token",
+            "type": "button",
+            "typeOptions": {
+                "color": "primary",
+                "icon": "zmdi-play",
+                "action": "var url = 'https://webflow.com/oauth/authorize?client_id=' + config.clientId + '&response_type=code';\nvar win = window.open(url, 'Authorization page', 'toolbar=no,scrollbars=no,location=no,statusbar=no,menubar=no,resizable=0,width=500,height=600,left=' + ((screen.width / 2) - 250) + ',top=' + ((screen.height / 2) - 250) + ',');\nvar self = this;\nvar intervalFn = function () {\n    try {\n        if (!win || !win.location) {\n            window.clearInterval(pollTimer);\n        } else {\n            if (win.location.href.indexOf('/callback') != -1) {\n                win.innerWidth = 100;\n                win.innerHeight = 100;\n                win.screenX = screen.width;\n                win.screenY = screen.height;\n                window.clearInterval(pollTimer);\n                url = win.location.href;\n                var pos = url.indexOf('code=');\n                var code;\n                if(pos > -1) {\n                    code = url.substring(pos + 5);\n                    config.authorizationCode = code;\n                    try { \n                        win.close();\n                    } catch (e) { }\n                }\n            }\n        }\n    } catch (e) {\n        console.log(e);\n    }\n};\nvar pollTimer = window.setInterval(function () { intervalFn.apply(self); }, 500);"
+            }
+        },
+        {
+            "name": "authorizationCode",
+            "label": "Authorization Code",
+            "type": "text",
+            "required": true
+        },
+        {
+            "label": "Information",
+            "name": "information",
+            "type": "info",
+            "typeOptions": {
+                "alertType": "warning"
+            },
+            "value": "Once you create the endpoint or refresh the code, please make sure tu PUSH in the next 30 minutes and REDEPLOY the endpoint. "
+        },
+        {
+            "name": "webhook",
+            "label": "Webhook URL",
+            "type": "label",
+            "value": "@config.WEBHOOK_URL"
+        },
+        {
+            "name": "WEBFLOW_API_BASE_URL",
+            "label": "Webflow Api Url",
+            "type": "label",
+            "value": "https://api.example.com/v1/ // TODO: Set the base url for the api"
+        }
+    ],
+    "events": [
+        {
+            "label": "Webhook",
+            "name": "webhook",
+            "description": "Notifications from Webflow."
+        }
+    ],
+    "metadata": [
+        {
+            "type": "script",
+            "namespace": "api",
+            "path": "/scripts/functions.js"
+        },
+        {
+            "type": "listener",
+            "namespace": "webhook",
+            "path": "/listeners/listeners.js"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/apiCallWebflow"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/listSitesWebflow"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/listColectionsWebflow"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/createItemWebflow"
+        }
+    ]
+}
