@@ -33,7 +33,7 @@
             "name": "requestToken",
             "label": "Request token",
             "type": "oauth2",
-            "visibility": "config.authenticationMethod == 'oAuth2'",
+            "visibility": true,
             "typeOptions": {
                 "clientId": "config.clientId",
                 "clientSecret": "config.clientSecret",
@@ -44,6 +44,12 @@
                 "accessToken": "@config.accessToken",
                 "refreshToken": "@config.refreshToken"
             }
+        },
+        {
+            "name": "accessToken",
+            "label": "Access token",
+            "type": "text",
+            "visibility": true
         },
         {
             "name": "webhook",
