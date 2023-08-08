@@ -647,9 +647,10 @@ function setApiUri(options) {
 
 function setRequestHeaders(options) {
     var headers = options.headers || {};
-    sys.logs.debug('[webflow] Set header Bearer: '+ config.get("accessToken"));
+    let pkgConfig = config.get()
+    sys.logs.debug('[webflow] Set header Bearer: '+ pkgConfig.accessToken);
     headers = mergeJSON(headers, {"Content-Type": "application/json"});
-    headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("accessToken")});
+    headers = mergeJSON(headers, {"Authorization": "Bearer " + pkgConfig.accessToken});
     options.headers = headers;
     return options;
 }
