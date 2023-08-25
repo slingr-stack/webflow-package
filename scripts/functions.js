@@ -20,7 +20,6 @@ function handleRequestWithRetry(requestFn, options, callbackData, callbacks) {
         return requestFn(options, callbackData, callbacks);
     } catch (error) {
         sys.logs.info("[webflow] Handling request "+JSON.stringify(error));
-        throw error;
     }
 }
 
@@ -564,10 +563,6 @@ exports.utils.getConfiguration = function (property) {
  Private helpers
  ****************************************************/
 
-var concatQuery = function (url, key, value) {
-    return url + ((!url || url.indexOf('?') < 0) ? '?' : '&') + key + "=" + value;
-}
-
 var checkHttpOptions = function (url, options) {
     options = options || {};
     if (!!url) {
@@ -601,7 +596,7 @@ var parse = function (str) {
         if (arguments.length > 1) {
             var args = arguments[1], i = 0;
             return str.replace(/(:(?:\w|-)+)/g, () => {
-                if (typeof (args[i]) != 'string') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
+                if (typeof (args[i]) != 'string' && typeof (args[i]) != 'number') throw new Error('Invalid type of argument: [' + args[i] + '] for url [' + str + '].');
                 return args[i++];
             });
         } else {
@@ -615,12 +610,6 @@ var parse = function (str) {
         throw err;
     }
 }
-
-/****************************************************
- Constants
- ****************************************************/
-
-
 
 /****************************************************
  Configurator
@@ -638,7 +627,7 @@ var Webflow = function (options) {
  ****************************************************/
 
 function setApiUri(options) {
-    var API_URL = config.get("WEBFLOW_API_BASE_URL"); // TODO: Set the base url for the api in the package.json (Remove this comment after set the url)
+    var API_URL = config.get("WEBFLOW_API_BASE_URL");
     var url = options.path || "";
     options.url = API_URL + url;
     sys.logs.debug('[webflow] Set url: ' + options.path + "->" + options.url);
