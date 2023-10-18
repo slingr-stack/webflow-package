@@ -74,32 +74,31 @@
     "metadata": [
         {
             "type": "script",
-            "namespace": "api",
+            "namespace": "functions",
             "path": "/scripts/functions.js"
         },
         {
             "type": "listener",
-            "namespace": "webhook",
             "path": "/listeners/listeners.js"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "apiCallWebflow",
             "path": "/flowSteps/apiCallWebflow"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "listSitesWebflow",
             "path": "/flowSteps/listSitesWebflow"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "listColectionsWebflow",
             "path": "/flowSteps/listColectionsWebflow"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "createItemWebflow",
             "path": "/flowSteps/createItemWebflow"
         }
     ]
